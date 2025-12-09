@@ -1,14 +1,22 @@
 import { Link, NavLink, Outlet } from 'react-router-dom'
 import { Button } from '../ui/Button'
+import { useState } from 'react'
+import { Menu, X } from 'lucide-react'
 
 const navItems = [
   { label: 'Home', to: '/' },
   { label: 'Study Abroad', to: '/study-abroad' },
   { label: 'Courses', to: '/courses' },
   { label: 'Campus Ambassador', to: '/campus-ambassador' },
+  { label: 'Accelerator', to: '/accelerator' },
 ]
 
 const Layout = () => {
+  const [mobileOpen, setMobileOpen] = useState(false)
+
+  const toggleMenu = () => setMobileOpen((prev) => !prev)
+  const closeMenu = () => setMobileOpen(false)
+
   return (
     <div className="min-h-screen bg-zlowy-bg text-black">
       <header className="sticky top-0 z-50 border-b-2 border-black bg-white/95 backdrop-blur">
@@ -32,6 +40,39 @@ const Layout = () => {
             ))}
           </nav>
           <Button className="hidden md:inline-flex" asChild>
+            <Link to="/get-started">Get Started</Link>
+          </Button>
+          <button
+            type="button"
+            className="md:hidden"
+            onClick={toggleMenu}
+            aria-label="Toggle navigation"
+          >
+            {mobileOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
+          </button>
+        </div>
+        <div
+          className={`md:hidden border-t-2 border-black bg-white px-4 transition-[max-height] duration-300 overflow-hidden ${
+            mobileOpen ? 'max-h-96 py-4' : 'max-h-0'
+          }`}
+        >
+          <nav className="flex flex-col gap-4">
+            {navItems.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                onClick={closeMenu}
+                className={({ isActive }) =>
+                  `font-body text-sm uppercase tracking-[0.3em] ${
+                    isActive ? 'text-black' : 'text-neutral-500 hover:text-black'
+                  }`
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </nav>
+          <Button className="mt-4 w-full" onClick={closeMenu} asChild>
             <Link to="/get-started">Get Started</Link>
           </Button>
         </div>

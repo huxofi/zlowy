@@ -3,6 +3,8 @@ import { ArrowUpRight, Globe2, ShieldCheck, Sparkles } from 'lucide-react'
 import { FlipCard } from '../components/ui/FlipCard'
 import { Button } from '../components/ui/Button'
 import DestinationsGrid from '../components/sections/DestinationsGrid'
+import { HighlightSpan } from '../components/ui/HighlightSpan'
+import { Marquee } from '../components/ui/Marquee'
 
 const heroStats = [
   { label: 'Students placed', value: '4,800+' },
@@ -109,6 +111,98 @@ const Home = () => {
           animate={{ y: [0, 18, 0] }}
           transition={{ repeat: Infinity, duration: 8, ease: 'easeInOut' }}
         />
+        <motion.span
+          className="pointer-events-none absolute left-8 top-6 text-4xl"
+          animate={{ y: [0, -10, 0], rotate: [0, -6, 3, 0] }}
+          transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
+        >
+          ✶
+        </motion.span>
+        <motion.span
+          className="pointer-events-none absolute bottom-6 right-16 text-3xl"
+          animate={{ y: [0, -12, 0], rotate: [0, 8, -5, 0] }}
+          transition={{ repeat: Infinity, duration: 7.5, ease: 'easeInOut' }}
+        >
+          ⬈
+        </motion.span>
+        <motion.span
+          className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 text-5xl text-neutral-900/10"
+          animate={{ rotate: [0, 360] }}
+          transition={{ repeat: Infinity, duration: 18, ease: 'linear' }}
+        >
+          🌐
+        </motion.span>
+      </section>
+
+      <Marquee items={['/// FUTURE READY ///', '/// INDUSTRY CERTIFIED ///', '/// GLOBAL ALUMNI ///']} />
+
+      <section className="rounded-[32px] border-3 border-black bg-white px-8 py-10 shadow-brutal">
+        <div className="grid gap-10 lg:grid-cols-[320px_minmax(0,1fr)]">
+          <div className="space-y-4">
+            <p className="font-mono text-xs uppercase tracking-[0.6em] text-neutral-500">Application form</p>
+            <h2 className="font-display text-3xl uppercase leading-tight">
+              Secure your <HighlightSpan color="pink">Zlowy slot</HighlightSpan>
+            </h2>
+            <p className="text-sm text-neutral-600">
+              Drop your details and our control room will beam over a tailored accelerator plan within 24 hours.
+            </p>
+            <ul className="space-y-2 text-sm text-neutral-700">
+              <li>• Dedicated strategist call</li>
+              <li>• Visa + funding checklist</li>
+              <li>• Cohort onboarding kit</li>
+            </ul>
+          </div>
+
+          <form className="space-y-6">
+            <div className="grid gap-6 md:grid-cols-2">
+              <label className="text-xs font-semibold uppercase tracking-[0.3em] text-neutral-500">
+                Full Name
+                <input
+                  type="text"
+                  placeholder="Jane Doe"
+                  className="mt-2 w-full border-b-2 border-black bg-transparent px-1 py-3 text-base transition-colors focus:border-zlowy-accent focus:outline-none"
+                  required
+                />
+              </label>
+              <label className="text-xs font-semibold uppercase tracking-[0.3em] text-neutral-500">
+                Email
+                <input
+                  type="email"
+                  placeholder="you@zlowy.com"
+                  className="mt-2 w-full border-b-2 border-black bg-transparent px-1 py-3 text-base transition-colors focus:border-zlowy-accent focus:outline-none"
+                  required
+                />
+              </label>
+              <label className="text-xs font-semibold uppercase tracking-[0.3em] text-neutral-500">
+                Preferred Destination
+                <input
+                  type="text"
+                  placeholder="Toronto, Berlin..."
+                  className="mt-2 w-full border-b-2 border-black bg-transparent px-1 py-3 text-base transition-colors focus:border-zlowy-accent focus:outline-none"
+                />
+              </label>
+              <label className="text-xs font-semibold uppercase tracking-[0.3em] text-neutral-500">
+                Current/Past College
+                <input
+                  type="text"
+                  placeholder="BITS Goa, SRCC..."
+                  className="mt-2 w-full border-b-2 border-black bg-transparent px-1 py-3 text-base transition-colors focus:border-zlowy-accent focus:outline-none"
+                />
+              </label>
+            </div>
+            <label className="text-xs font-semibold uppercase tracking-[0.3em] text-neutral-500">
+              Your story
+              <textarea
+                placeholder="Share your academic goals, dream cities, or challenges."
+                className="mt-2 w-full border-b-2 border-black bg-transparent px-1 py-3 text-base transition-colors focus:border-zlowy-accent focus:outline-none"
+                rows={4}
+              />
+            </label>
+            <Button type="submit" className="w-full">
+              Apply Now
+            </Button>
+          </form>
+        </div>
       </section>
 
       <DestinationsGrid />
@@ -117,30 +211,29 @@ const Home = () => {
         <div className="flex items-center justify-between">
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.6em] text-neutral-500">Why Zlowy</p>
-            <h2 className="mt-2 font-display text-3xl uppercase">The Zlowy Flip</h2>
+            <h2 className="mt-2 font-display text-3xl uppercase">
+              The Zlowy <HighlightSpan color="lime">Flip</HighlightSpan>
+            </h2>
           </div>
-          <p className="hidden max-w-sm text-sm text-neutral-600 md:block">
-            Borrowing from Grin.co, these cards flip in 3D to reveal the intel students actually need when shopping global
-            options.
-          </p>
         </div>
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           {flipCards.map(({ title, icon: Icon, detail }) => (
-            <FlipCard
-              key={title}
-              frontContent={
-                <div className="flex h-full flex-col justify-between">
-                  <Icon className="h-10 w-10" />
-                  <p className="font-display text-2xl uppercase">{title}</p>
-                </div>
-              }
-              backContent={
-                <div className="flex h-full flex-col justify-between">
-                  <p className="text-sm leading-relaxed text-white/90">{detail}</p>
-                  <span className="mt-4 text-xs uppercase tracking-[0.4em] text-white/70">Swipe →</span>
-                </div>
-              }
-            />
+            <div key={title} className="h-64">
+              <FlipCard
+                frontContent={
+                  <div className="flex h-full flex-col justify-between">
+                    <Icon className="h-10 w-10" />
+                    <p className="font-display text-2xl uppercase">{title}</p>
+                  </div>
+                }
+                backContent={
+                  <div className="flex h-full flex-col justify-between">
+                    <p className="text-sm leading-relaxed text-white/90">{detail}</p>
+                    <span className="mt-4 text-xs uppercase tracking-[0.4em] text-white/70">Swipe →</span>
+                  </div>
+                }
+              />
+            </div>
           ))}
         </div>
       </section>

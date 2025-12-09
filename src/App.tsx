@@ -4,6 +4,7 @@ import Home from './pages/Home.tsx'
 import StudyAbroad from './pages/StudyAbroad.tsx'
 import Courses from './pages/Courses.tsx'
 import CampusAmbassador from './pages/CampusAmbassador.tsx'
+import ZlowyAccelerator from './pages/ZlowyAccelerator.tsx'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/study-abroad" element={<StudyAbroad />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/campus-ambassador" element={<CampusAmbassador />} />
+          <Route path="/accelerator" element={<ZlowyAccelerator />} />
         </Route>
       </Routes>
     </BrowserRouter>
